@@ -16,8 +16,9 @@ class CreateTargetsitesTable extends Migration
         Schema::create('targetsites', function (Blueprint $table) {
             $table->id();
             $table->string('site_name')->unique();
-            $table->string('coordiantes');
+            $table->text('coordinates')->nullable();
             $table->string('location');
+            $table->string('site_image')->nullable();
             $table->text('desc')->nullable();
             $table->timestamps();
         });

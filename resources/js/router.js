@@ -8,6 +8,7 @@ import agency from './pages/Agency/Show.vue';
 import role from './pages/Settings/Roles.vue';
 import user from './pages/Users/Show.vue';
 import donations from './pages/Donations/Show.vue';
+import site from './pages/Sites/Show.vue';
 
 
 const routes = [
@@ -38,6 +39,11 @@ const routes = [
         path: '/donations',
         component: donations,
         name: 'donations'
+    },
+    {
+        path: '/site',
+        component: site,
+        name: 'site'
     },
 ];
 

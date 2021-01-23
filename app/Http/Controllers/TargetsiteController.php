@@ -15,6 +15,8 @@ class TargetsiteController extends Controller
     public function index()
     {
         //
+
+        return Targetsite::all();
     }
 
     /**
@@ -22,9 +24,24 @@ class TargetsiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //validate inputs
+        $this->validate($request, [
+            'site_name' => 'required|unique:targetsites',
+            'coordinates' => 'required',
+            'location' => 'required',
+            'desc' => 'required',
+
+        ]);
+        return Targetsite::create([
+            'site_name' =>$request->site_name,
+            'coordinates' =>$request->coordinates,
+            'location' =>$request->location,
+            'site_image' =>$request->site_image,
+            'desc'=>$request->desc,
+        ]);
+        //input function
     }
 
     /**

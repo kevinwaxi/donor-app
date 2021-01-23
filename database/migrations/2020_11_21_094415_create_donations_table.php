@@ -20,6 +20,7 @@ class CreateDonationsTable extends Migration
             $table->text('item_name');
             $table->string('item_type');
             $table->string('item_unit');
+            $table->string('image')->nullable();
             $table->integer('item_quantity')->default(0);
             $table->text('item_desc')->nullable();
             $table->timestamps();

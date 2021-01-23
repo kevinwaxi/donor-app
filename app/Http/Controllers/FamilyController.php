@@ -36,6 +36,7 @@ class FamilyController extends Controller
             'isDisabled' =>'required',
             'disabilityDesc'=>'required',
         ]);
+        //input family details
         return Family::create([
             'surname' =>$request->surname,
             'children_no' =>$request->children_no,

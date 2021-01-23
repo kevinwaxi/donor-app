@@ -29,7 +29,7 @@
                 </div>
                 </form>
 
-                
+
             </nav>
         <!-- /.navbar -->
 
@@ -77,6 +77,12 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <router-link to="site" href="#" class="nav-link">
+                                    <i class="fas fa-store-alt nav-icon"></i>
+                                    <p>Camp Site</p>
+                                </router-link>
+                            </li>
                             <li class="nav-item">
                                 <router-link to="donations" href="#" class="nav-link">
                                     <i class="fas fa-store-alt nav-icon"></i>
@@ -130,7 +136,7 @@
                                     <p>Security</p>
                                 </a>
                             </li>
-                            
+
                         </ul>
                     </li>
                     <li class="nav-item">
