@@ -15,6 +15,7 @@ class FamilyController extends Controller
     public function index()
     {
         //
+        return Family::all();
     }
 
     /**
@@ -22,9 +23,29 @@ class FamilyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //validate first
+        $this->validate($request, [
+            'surname' => 'required',
+            'children_no' => 'required',
+            'date_of_birth' => 'required',
+            'isRefugee' => 'required',
+            'countryOrgin' => 'required',
+            'location' => 'required|unique:agencies',
+            'isDisabled' =>'required',
+            'disabilityDesc'=>'required',
+        ]);
+        return Family::create([
+            'surname' =>$request->surname,
+            'children_no' =>$request->children_no,
+            'date_of_birth'=>$request ->date_of_birth,
+            'isRefugee'=>$request->isRefugee,
+            'countryOrigin'=>$request->countryOrigin,
+            'location'=>$request->location,
+            'isDisabled'=>$request->isDisabled,
+            'disabilityDesc' => $request->disabilityDesc
+        ]);
     }
 
     /**

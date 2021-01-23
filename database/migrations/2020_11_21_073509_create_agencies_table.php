@@ -15,14 +15,14 @@ class CreateAgenciesTable extends Migration
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->text('agency_name');
             $table->string('agency_type');
+            $table->text('address');
+            $table->text('email');
+            $table->text('mobile');
             $table->text('agency_desc');
-            $table->text('agency_mobile');
             $table->string('agency_location');
-            $table->text('agency_address');
-            $table->text('agency_email');
             $table->timestamps();
         });
     }

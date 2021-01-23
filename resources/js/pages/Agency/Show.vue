@@ -47,7 +47,7 @@
                             <!-- /.card-header -->
                             <div
                                 class="card-body table-responsive p-0"
-                                style="height: 100%;"
+                                style="height: 100%"
                             >
                                 <table class="table table-head-fixed">
                                     <thead>
@@ -81,10 +81,16 @@
                                                 <button
                                                     type="button"
                                                     class="btn btn-outline-primary"
-                                                    @click="showEditModal(agency, i)">
+                                                    @click="
+                                                        showEditModal(agency, i)
+                                                    "
+                                                >
                                                     Edit
                                                 </button>
-                                                <button type="button" class="btn btn-outline-danger">
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-outline-danger"
+                                                >
                                                     Delete
                                                 </button>
                                             </td>
@@ -130,6 +136,7 @@
                         v-model="data.agency_mobile"
                         prefix="ios-call"
                         size="large"
+                        type="tel"
                         maxlength="10"
                         show-word-limit
                         placeholder="Agency Mobile No"
@@ -138,6 +145,7 @@
                     <Input
                         v-model="data.agency_email"
                         prefix="ios-mail"
+                        type="email"
                         size="large"
                         placeholder="Agency Email"
                     />
@@ -148,21 +156,17 @@
                         size="large"
                         placeholder="Agency address"
                     />
+
                     <div class="space"></div>
-                    <Select
-                        v-model="data.agency_location"
-                        filterable
-                        :remote-method="remoteMethod1"
-                        :loading="loading1"
-                    >
-                        <Option v-for="(option, index) in options1" :value="option.value" :key="index">{{option.label}}</Option>
+                    <Select v-model="data.agency_location" placeholder="Select County" filterable>
+                        <Option
+                            v-for="item in list"
+                            :value="item.value"
+                            :key="item.value"
+                            >{{ item.label }}</Option
+                        >
                     </Select>
-                    <Input
-                        v-model="data.agency_location"
-                        prefix="ios-mail"
-                        size="large"
-                        placeholder="Agency location"
-                    />
+
                     <div class="space"></div>
                     <div slot="footer">
                         <Button type="default" @click="addModal = false"
@@ -211,6 +215,7 @@
                         v-model="editData.agency_mobile"
                         prefix="ios-call"
                         size="large"
+                        type="tel"
                         maxlength="10"
                         show-word-limit
                         placeholder="Edit agency Mobile No"
@@ -227,7 +232,7 @@
                         <Button type="default" @click="editModal = false"
                             >Close</Button
                         >
-                        <Button type="primary" @click="editTag"
+                        <Button type="primary" @click="editAgency"
                             >Edit Tag</Button
                         >
                     </div>
@@ -256,7 +261,8 @@ export default {
                 agency_desc: "",
                 agency_type: "",
                 agency_mobile: "",
-                agency_email: ""
+                agency_email: "",
+                agency_location: ''
             },
             addModal: false,
             editModal: false,
@@ -270,57 +276,160 @@ export default {
                 agency_mobile: "",
                 agency_email: ""
             },
-            loading1: false,
-            options1: [],
             list: [
-                "Mombasa",
-                "Kwale",
-                "Kilifi",
-                "Tana River",
-                "Lamu",
-                "Taita/Taveta",
-                "Garissa",
-                "Wajir",
-                "Mandera",
-                "Marsabit",
-                "Isiolo",
-                "Meru",
-                "Tharaka-Nithi",
-                "Embu",
-                "Kitui",
-                "Machakos",
-                "Makueni",
-                "Nyandarua",
-                "Nyeri",
-                "Kirinyaga",
-                "Muranga",
-                "Kiambu",
-                "Turkana",
-                "West Pokot",
-                "Samburu",
-                "Trans Nzoia",
-                "Uasin Gishu",
-                "Elgeyo/Marakwet",
-                "Nandi",
-                "Baringo",
-                "Laikipia",
-                "Nakuru",
-                "Narok",
-                "Kajiado",
-                "Kericho",
-                "Bomet",
-                "Kakamega",
-                "Vihiga",
-                "Bungoma",
-                "Busia",
-                "Siaya",
-                "Kisumu",
-                "Homa Bay",
-                "Migori",
-                "Kisii",
-                "Nyamira",
-                "Nairobi"
+                {
+                    value:"Mombasa",
+                    label:"Mombasa"
+                },
+                {
+                    value:"kwale",
+                    label:"kwale"
+                },
+                {
+                    value:"Kilifi",
+                    label:"Kilifi",
+                },
+                {
+                    value:"Tana River",
+                    label:"Tana River",
+                },
+                {
+                    value:"Lamu",
+                    label:"Lamu",
+                },
+                {
+                    value:"taita/Taveta",
+                    label:"Taita/Taveta",
+                },
+                {
+                    value:"Garissa",
+                    label:"Garissa",
+                },
+                {
+                    value:"Wajir",
+                    label:"Wajir",
+                },
+                {
+                    value:"Mandera",
+                    label:"Mandera",
+                },
+                {
+                    value:"Isiolo",
+                    label:"Isiolo",
+                },
+                {
+                    value:"Meru",
+                    label:"Meru",
+                },
+                {
+                    value:"Tharaka-Nithi",
+                    label:"Tharaka-Nithi",
+                },
+                {
+                    value:"Embu",
+                    label:"Embu",
+                },{
+                    value:"Kitui",
+                    label:"Kitui",
+                },{
+                    value:"Machakos",
+                    label:"machakos",
+                },{
+                    value:"Makueni",
+                    label:"Makueni",
+                },{
+                    value:"Nyandarua",
+                    label:"Nyandarua",
+                },{
+                    value:"Nyeri",
+                    label:"Nyeri",
+                },{
+                    value:"Kirinyaga",
+                    label:"Kirinyaga",
+                },{
+                    value:"Muranga",
+                    label:"Muranga",
+                },{
+                    value:"Kiambu",
+                    label:"Kiambu",
+                },{
+                    value:"Turkana",
+                    label:"Turkana",
+                },{
+                    value:"West Pokot",
+                    label:"West Pokot",
+                },{
+                    value:"Samburu",
+                    label:"Samburu",
+                },{
+                    value:"Trans Nzoia",
+                    label:"Trans Nzoia",
+                },{
+                    value:"Uasin Gishu",
+                    label:"Uasin Gishu",
+                },{
+                    value:"Elgeyo/Markwet",
+                    label:"Elgeyo/Markwet",
+                },{
+                    value:"Nandi",
+                    label:"Nandi",
+                },{
+                    value:"Baringo",
+                    label:"Baringo",
+                },{
+                    value:"Laikipia",
+                    label:"Laikipia",
+                },{
+                    value:"Nakuru",
+                    label:"Nakuru",
+                },{
+                    value:"Narok",
+                    label:"Narok",
+                },{
+                    value:"Kajiado",
+                    label:"Kajiado",
+                },{
+                    value:"Kericho",
+                    label:"Kericho",
+                },{
+                    value:"Bomet",
+                    label:"Bomet",
+                },{
+                    value:"Kakamega",
+                    label:"Kakamega",
+                },{
+                    value:"Vihiga",
+                    label:"Vihiga",
+                },{
+                    value:"Bungoma",
+                    label:"Bungoma",
+                },{
+                    value:"Busia",
+                    label:"Busia",
+                },{
+                    value:"Siaya",
+                    label:"Siaya",
+                },{
+                    value:"Kisumu",
+                    label:"Kisumu",
+                },{
+                    value:"Homa Bay",
+                    label:"Homa Bay",
+                },{
+                    value:"Migori",
+                    label:"Migori",
+                },{
+                    value:"Kisii",
+                    label:"Kisii",
+                },{
+                    value:"Nyamira",
+                    label:"Nyamira",
+                },{
+                    value:"Nairobi",
+                    label:"Nairobi",
+                },
             ],
+
             index: -1,
             showDeleteModal: false,
             isDeleting: false,
@@ -336,7 +445,7 @@ export default {
                 return this.e("Agency description is required");
             if (this.data.agency_type.trim() == "")
                 return this.e("Agency type is required");
-            if (this.data.agency_mobile.trim() == "")
+            if (this.data.agency_mobile.trim()=="")
                 return this.e("Mobile or telephone number is required");
             if (this.data.agency_email.trim() == "")
                 return this.e("Email is required");
@@ -354,6 +463,7 @@ export default {
                 this.data.agency_email = "";
                 this.data.agency_mobile = "";
                 this.data.agency_type = "";
+                this.data.agency_location = "";
             } else {
                 if (res.status == 422) {
                     if (res.data.errors.agency_name) {
@@ -413,7 +523,7 @@ export default {
             console.log("delete method called");
             /* this.deleteItem = tag;
             this.deletingIndex = i;
-            this.showDeleteModal = true; 
+            this.showDeleteModal = true;
             [vuex] unknown mutation type*/
         }
     },
