@@ -17,7 +17,7 @@ class CreateAgenciesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->text('agency_name');
-            $table->string('agency_image');
+            $table->string('agency_image')->nullable();
             $table->string('agency_type');
             $table->text('address');
             $table->text('email');
