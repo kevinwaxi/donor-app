@@ -32,7 +32,7 @@ class AgencyController extends Controller
             'email' => 'required|unique:agencies|unique:users',
             'agency_type' => 'required',
             'agency_desc' => 'required',
-            'agency_address' => 'required|unique:agencies',
+            'address' => 'required|unique:agencies',
             'agency_location' =>'required',
         ]);
 
@@ -40,11 +40,11 @@ class AgencyController extends Controller
             'user_id'=> Auth::user()->id,
             'agency_name' =>$request->agency_name,
             'mobile' =>$request->mobile,
-            'agency_email'=>$request ->agency_email,
+            'email'=>$request ->email,
             'agency_type'=>$request->agency_type,
             'agency_location'=>$request->agency_location,
             'agency_desc'=>$request->agency_desc,
-            'agency_address'=>$request->agency_address,
+            'address'=>$request->address,
         ]);
     }
 

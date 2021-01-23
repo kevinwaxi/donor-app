@@ -2351,6 +2351,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2363,9 +2367,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         agency_name: "",
         agency_desc: "",
         agency_type: "",
-        agency_mobile: "",
-        agency_email: "",
-        agency_location: ''
+        mobile: "",
+        address: "",
+        email: "",
+        agency_location: ""
       },
       addModal: false,
       editModal: false,
@@ -2559,7 +2564,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", _this.e("Agency type is required"));
 
               case 6:
-                if (!(_this.data.agency_mobile.trim() == "")) {
+                if (!(_this.data.mobile.trim() == "")) {
                   _context.next = 8;
                   break;
                 }
@@ -2567,7 +2572,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", _this.e("Mobile or telephone number is required"));
 
               case 8:
-                if (!(_this.data.agency_email.trim() == "")) {
+                if (!(_this.data.email.trim() == "")) {
                   _context.next = 10;
                   break;
                 }
@@ -2575,10 +2580,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", _this.e("Email is required"));
 
               case 10:
-                _context.next = 12;
-                return _this.callApi("post", "/app/create_agency", _this.data);
+                if (!(_this.data.address.trim() == "")) {
+                  _context.next = 12;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Address is required"));
 
               case 12:
+                _context.next = 14;
+                return _this.callApi("post", "/app/create_agency", _this.data);
+
+              case 14:
                 res = _context.sent;
 
                 if (res.status === 201) {
@@ -2589,8 +2602,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.addModal = false;
                   _this.data.agency_name = "";
                   _this.data.agency_desc = "";
-                  _this.data.agency_email = "";
-                  _this.data.agency_mobile = "";
+                  _this.data.email = "";
+                  _this.data.address = "";
+                  _this.data.mobile = "";
                   _this.data.agency_type = "";
                   _this.data.agency_location = "";
                 } else {
@@ -2603,7 +2617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-              case 14:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -85686,7 +85700,7 @@ var render = function() {
                               },
                               [
                                 _c("i", {
-                                  staticClass: "fas fa-store-alt nav-icon"
+                                  staticClass: "fas fa-campground nav-icon"
                                 }),
                                 _vm._v(" "),
                                 _c("p", [_vm._v("Camp Site")])
@@ -85708,7 +85722,7 @@ var render = function() {
                               },
                               [
                                 _c("i", {
-                                  staticClass: "fas fa-store-alt nav-icon"
+                                  staticClass: "fas fa-shopping-bag nav-icon"
                                 }),
                                 _vm._v(" "),
                                 _c("p", [_vm._v("Donations")])
@@ -86128,11 +86142,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(agency.agency_desc))]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(_vm._s(agency.agency_mobile))
-                                ]),
+                                _c("td", [_vm._v(_vm._s(agency.mobile))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(agency.agency_email))]),
+                                _c("td", [_vm._v(_vm._s(agency.email))]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _c(
@@ -86267,11 +86279,11 @@ var render = function() {
                   placeholder: "Agency Mobile No"
                 },
                 model: {
-                  value: _vm.data.agency_mobile,
+                  value: _vm.data.mobile,
                   callback: function($$v) {
-                    _vm.$set(_vm.data, "agency_mobile", $$v)
+                    _vm.$set(_vm.data, "mobile", $$v)
                   },
-                  expression: "data.agency_mobile"
+                  expression: "data.mobile"
                 }
               }),
               _vm._v(" "),
@@ -86285,11 +86297,11 @@ var render = function() {
                   placeholder: "Agency Email"
                 },
                 model: {
-                  value: _vm.data.agency_email,
+                  value: _vm.data.email,
                   callback: function($$v) {
-                    _vm.$set(_vm.data, "agency_email", $$v)
+                    _vm.$set(_vm.data, "email", $$v)
                   },
-                  expression: "data.agency_email"
+                  expression: "data.email"
                 }
               }),
               _vm._v(" "),
@@ -86302,11 +86314,11 @@ var render = function() {
                   placeholder: "Agency address"
                 },
                 model: {
-                  value: _vm.data.agency_address,
+                  value: _vm.data.address,
                   callback: function($$v) {
-                    _vm.$set(_vm.data, "agency_address", $$v)
+                    _vm.$set(_vm.data, "address", $$v)
                   },
-                  expression: "data.agency_address"
+                  expression: "data.address"
                 }
               }),
               _vm._v(" "),

@@ -69,8 +69,8 @@
                                             <td>{{ agency.id }}</td>
                                             <td>{{ agency.agency_name }}</td>
                                             <td>{{ agency.agency_desc }}</td>
-                                            <td>{{ agency.agency_mobile }}</td>
-                                            <td>{{ agency.agency_email }}</td>
+                                            <td>{{ agency.mobile }}</td>
+                                            <td>{{ agency.email }}</td>
                                             <td>
                                                 <button
                                                     type="button"
@@ -133,7 +133,7 @@
                     />
                     <div class="space"></div>
                     <Input
-                        v-model="data.agency_mobile"
+                        v-model="data.mobile"
                         prefix="ios-call"
                         size="large"
                         type="tel"
@@ -143,7 +143,7 @@
                     />
                     <div class="space"></div>
                     <Input
-                        v-model="data.agency_email"
+                        v-model="data.email"
                         prefix="ios-mail"
                         type="email"
                         size="large"
@@ -151,14 +151,18 @@
                     />
                     <div class="space"></div>
                     <Input
-                        v-model="data.agency_address"
+                        v-model="data.address"
                         prefix="ios-mail"
                         size="large"
                         placeholder="Agency address"
                     />
 
                     <div class="space"></div>
-                    <Select v-model="data.agency_location" placeholder="Select County" filterable>
+                    <Select
+                        v-model="data.agency_location"
+                        placeholder="Select County"
+                        filterable
+                    >
                         <Option
                             v-for="item in list"
                             :value="item.value"
@@ -260,9 +264,10 @@ export default {
                 agency_name: "",
                 agency_desc: "",
                 agency_type: "",
-                agency_mobile: "",
-                agency_email: "",
-                agency_location: ''
+                mobile: "",
+                address: "",
+                email: "",
+                agency_location: ""
             },
             addModal: false,
             editModal: false,
@@ -278,156 +283,189 @@ export default {
             },
             list: [
                 {
-                    value:"Mombasa",
-                    label:"Mombasa"
+                    value: "Mombasa",
+                    label: "Mombasa"
                 },
                 {
-                    value:"kwale",
-                    label:"kwale"
+                    value: "kwale",
+                    label: "kwale"
                 },
                 {
-                    value:"Kilifi",
-                    label:"Kilifi",
+                    value: "Kilifi",
+                    label: "Kilifi"
                 },
                 {
-                    value:"Tana River",
-                    label:"Tana River",
+                    value: "Tana River",
+                    label: "Tana River"
                 },
                 {
-                    value:"Lamu",
-                    label:"Lamu",
+                    value: "Lamu",
+                    label: "Lamu"
                 },
                 {
-                    value:"taita/Taveta",
-                    label:"Taita/Taveta",
+                    value: "taita/Taveta",
+                    label: "Taita/Taveta"
                 },
                 {
-                    value:"Garissa",
-                    label:"Garissa",
+                    value: "Garissa",
+                    label: "Garissa"
                 },
                 {
-                    value:"Wajir",
-                    label:"Wajir",
+                    value: "Wajir",
+                    label: "Wajir"
                 },
                 {
-                    value:"Mandera",
-                    label:"Mandera",
+                    value: "Mandera",
+                    label: "Mandera"
                 },
                 {
-                    value:"Isiolo",
-                    label:"Isiolo",
+                    value: "Isiolo",
+                    label: "Isiolo"
                 },
                 {
-                    value:"Meru",
-                    label:"Meru",
+                    value: "Meru",
+                    label: "Meru"
                 },
                 {
-                    value:"Tharaka-Nithi",
-                    label:"Tharaka-Nithi",
+                    value: "Tharaka-Nithi",
+                    label: "Tharaka-Nithi"
                 },
                 {
-                    value:"Embu",
-                    label:"Embu",
-                },{
-                    value:"Kitui",
-                    label:"Kitui",
-                },{
-                    value:"Machakos",
-                    label:"machakos",
-                },{
-                    value:"Makueni",
-                    label:"Makueni",
-                },{
-                    value:"Nyandarua",
-                    label:"Nyandarua",
-                },{
-                    value:"Nyeri",
-                    label:"Nyeri",
-                },{
-                    value:"Kirinyaga",
-                    label:"Kirinyaga",
-                },{
-                    value:"Muranga",
-                    label:"Muranga",
-                },{
-                    value:"Kiambu",
-                    label:"Kiambu",
-                },{
-                    value:"Turkana",
-                    label:"Turkana",
-                },{
-                    value:"West Pokot",
-                    label:"West Pokot",
-                },{
-                    value:"Samburu",
-                    label:"Samburu",
-                },{
-                    value:"Trans Nzoia",
-                    label:"Trans Nzoia",
-                },{
-                    value:"Uasin Gishu",
-                    label:"Uasin Gishu",
-                },{
-                    value:"Elgeyo/Markwet",
-                    label:"Elgeyo/Markwet",
-                },{
-                    value:"Nandi",
-                    label:"Nandi",
-                },{
-                    value:"Baringo",
-                    label:"Baringo",
-                },{
-                    value:"Laikipia",
-                    label:"Laikipia",
-                },{
-                    value:"Nakuru",
-                    label:"Nakuru",
-                },{
-                    value:"Narok",
-                    label:"Narok",
-                },{
-                    value:"Kajiado",
-                    label:"Kajiado",
-                },{
-                    value:"Kericho",
-                    label:"Kericho",
-                },{
-                    value:"Bomet",
-                    label:"Bomet",
-                },{
-                    value:"Kakamega",
-                    label:"Kakamega",
-                },{
-                    value:"Vihiga",
-                    label:"Vihiga",
-                },{
-                    value:"Bungoma",
-                    label:"Bungoma",
-                },{
-                    value:"Busia",
-                    label:"Busia",
-                },{
-                    value:"Siaya",
-                    label:"Siaya",
-                },{
-                    value:"Kisumu",
-                    label:"Kisumu",
-                },{
-                    value:"Homa Bay",
-                    label:"Homa Bay",
-                },{
-                    value:"Migori",
-                    label:"Migori",
-                },{
-                    value:"Kisii",
-                    label:"Kisii",
-                },{
-                    value:"Nyamira",
-                    label:"Nyamira",
-                },{
-                    value:"Nairobi",
-                    label:"Nairobi",
+                    value: "Embu",
+                    label: "Embu"
                 },
+                {
+                    value: "Kitui",
+                    label: "Kitui"
+                },
+                {
+                    value: "Machakos",
+                    label: "machakos"
+                },
+                {
+                    value: "Makueni",
+                    label: "Makueni"
+                },
+                {
+                    value: "Nyandarua",
+                    label: "Nyandarua"
+                },
+                {
+                    value: "Nyeri",
+                    label: "Nyeri"
+                },
+                {
+                    value: "Kirinyaga",
+                    label: "Kirinyaga"
+                },
+                {
+                    value: "Muranga",
+                    label: "Muranga"
+                },
+                {
+                    value: "Kiambu",
+                    label: "Kiambu"
+                },
+                {
+                    value: "Turkana",
+                    label: "Turkana"
+                },
+                {
+                    value: "West Pokot",
+                    label: "West Pokot"
+                },
+                {
+                    value: "Samburu",
+                    label: "Samburu"
+                },
+                {
+                    value: "Trans Nzoia",
+                    label: "Trans Nzoia"
+                },
+                {
+                    value: "Uasin Gishu",
+                    label: "Uasin Gishu"
+                },
+                {
+                    value: "Elgeyo/Markwet",
+                    label: "Elgeyo/Markwet"
+                },
+                {
+                    value: "Nandi",
+                    label: "Nandi"
+                },
+                {
+                    value: "Baringo",
+                    label: "Baringo"
+                },
+                {
+                    value: "Laikipia",
+                    label: "Laikipia"
+                },
+                {
+                    value: "Nakuru",
+                    label: "Nakuru"
+                },
+                {
+                    value: "Narok",
+                    label: "Narok"
+                },
+                {
+                    value: "Kajiado",
+                    label: "Kajiado"
+                },
+                {
+                    value: "Kericho",
+                    label: "Kericho"
+                },
+                {
+                    value: "Bomet",
+                    label: "Bomet"
+                },
+                {
+                    value: "Kakamega",
+                    label: "Kakamega"
+                },
+                {
+                    value: "Vihiga",
+                    label: "Vihiga"
+                },
+                {
+                    value: "Bungoma",
+                    label: "Bungoma"
+                },
+                {
+                    value: "Busia",
+                    label: "Busia"
+                },
+                {
+                    value: "Siaya",
+                    label: "Siaya"
+                },
+                {
+                    value: "Kisumu",
+                    label: "Kisumu"
+                },
+                {
+                    value: "Homa Bay",
+                    label: "Homa Bay"
+                },
+                {
+                    value: "Migori",
+                    label: "Migori"
+                },
+                {
+                    value: "Kisii",
+                    label: "Kisii"
+                },
+                {
+                    value: "Nyamira",
+                    label: "Nyamira"
+                },
+                {
+                    value: "Nairobi",
+                    label: "Nairobi"
+                }
             ],
 
             index: -1,
@@ -445,10 +483,12 @@ export default {
                 return this.e("Agency description is required");
             if (this.data.agency_type.trim() == "")
                 return this.e("Agency type is required");
-            if (this.data.agency_mobile.trim()=="")
+            if (this.data.mobile.trim() == "")
                 return this.e("Mobile or telephone number is required");
-            if (this.data.agency_email.trim() == "")
+            if (this.data.email.trim() == "")
                 return this.e("Email is required");
+            if (this.data.address.trim() == "")
+                return this.e("Address is required");
             const res = await this.callApi(
                 "post",
                 "/app/create_agency",
@@ -460,8 +500,9 @@ export default {
                 this.addModal = false;
                 this.data.agency_name = "";
                 this.data.agency_desc = "";
-                this.data.agency_email = "";
-                this.data.agency_mobile = "";
+                this.data.email = "";
+                this.data.address = "";
+                this.data.mobile = "";
                 this.data.agency_type = "";
                 this.data.agency_location = "";
             } else {
