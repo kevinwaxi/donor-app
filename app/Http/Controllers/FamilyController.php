@@ -15,7 +15,7 @@ class FamilyController extends Controller
     public function index()
     {
         //
-        return Family::all();
+        return Family::with(['user', 'targetsite']);
     }
 
     /**

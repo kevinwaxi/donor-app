@@ -15,12 +15,14 @@ class CreateFamiliesTable extends Migration
     {
         Schema::create('families', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('targetsite_id')->constrained();
             $table->string('surname', 100);
             $table->integer('children_no')->default(0);
             $table->date('date_of_birth');
             $table->boolean('isRefugee')->default(false);
             $table->text('countryOrigin')->nullable();
             $table->text('location');
+            $table->text('history');
             $table->boolean('isDisabled')->default(false);
             $table->text('diasabilityDesc')->nullable();
             $table->timestamps();

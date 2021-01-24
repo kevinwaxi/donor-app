@@ -18,6 +18,7 @@ class CreateTargetsitesTable extends Migration
             $table->string('site_name')->unique();
             $table->text('coordinates')->nullable();
             $table->string('location');
+            $table->string('population');
             $table->string('site_image')->nullable();
             $table->text('desc')->nullable();
             $table->timestamps();

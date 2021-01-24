@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TargetsiteController;
@@ -36,6 +37,9 @@ Route::prefix('app')->middleware('auth')->group(function(){
     Route::post('/create_donation', [DonationController::class, 'create']);
     Route::post('/assign_donation', [DonationController::class, 'update']);
     Route::get('/get_donation',[DonationController::class, 'index']);
+
+    //Family Crud
+    Route::get('/get_family',[FamilyController::class, 'index']);
 
     //Site Crud
     Route::get('/get_site',[TargetsiteController::class, 'index']);

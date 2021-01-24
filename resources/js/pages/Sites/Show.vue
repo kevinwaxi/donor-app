@@ -61,7 +61,7 @@
                       <td>{{ site.id }}</td>
                       <td>{{ site.site_name }}</td>
                       <td>{{ site.location }}</td>
-                      <td>{{ site.desc }}</td>
+                      <td>{{ site.desc}}</td>
                       <td>
                         <button
                           type="button"
@@ -95,20 +95,25 @@
           />
           <div class="space"></div>
           <Input
+            v-model="data.population"
+            prefix="ios-contact"
+            size="large"
+            placeholder="Population Size"
+          />
+          <div class="space"></div>
+          <Input
             v-model="data.desc"
             size="large"
             maxlength="200"
             show-word-limit
             type="textarea"
+            :rows="5"
             placeholder="Site description"
           />
           <div class="space"></div>
           <Input
             v-model="data.location"
             size="large"
-            maxlength="200"
-            show-word-limit
-            type="textarea"
             placeholder="Site Loaction"
           />
           <div class="space"></div>
@@ -180,6 +185,7 @@ export default {
         site_name: "",
         coordinates: "",
         location: "",
+        population:"",
         site_image: "",
         desc: "",
       },
@@ -209,6 +215,8 @@ export default {
       if (this.data.coordinates.trim() == "")
         return this.e("Input coordinates is required");
       if (this.data.location.trim() == "")
+        return this.e("Please Specify the location");
+        if (this.data.population.trim() == "")
         return this.e("Please Specify the location");
       if (this.data.desc.trim() == "")
         return this.e("Site description is required");

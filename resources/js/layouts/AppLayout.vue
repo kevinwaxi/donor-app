@@ -96,10 +96,10 @@
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <router-link to="family" href="#" class="nav-link">
                                     <i class="fas fa-house-user nav-icon"></i>
                                     <p>Families</p>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="agencies" class="nav-link">

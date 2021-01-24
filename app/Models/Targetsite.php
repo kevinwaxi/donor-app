@@ -11,4 +11,10 @@ class Targetsite extends Model
 
     protected $guarded =['id'];
 
+    public function family()
+    {
+        # code...
+        return $this->hasMany(Family::class);
+    }
+
 }

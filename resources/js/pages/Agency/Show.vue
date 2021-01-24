@@ -510,6 +510,24 @@ export default {
                     if (res.data.errors.agency_name) {
                         this.e(res.data.errors.agency_name[0]);
                     }
+                    if (res.data.errors.agency_desc) {
+                        this.e(res.data.errors.agency_desc[0]);
+                    }
+                    if (res.data.errors.email) {
+                        this.e(res.data.errors.email[0]);
+                    }
+                    if (res.data.errors.address) {
+                        this.e(res.data.errors.address[0]);
+                    }
+                    if (res.data.errors.mobile) {
+                        this.e(res.data.errors.mobile[0]);
+                    }
+                    if (res.data.errors.agency_type) {
+                        this.e(res.data.errors.agency_type[0]);
+                    }
+                    if (res.data.errors.agency_location) {
+                        this.e(res.data.errors.agency_location[0]);
+                    }
                 } else {
                     this.swr();
                 }

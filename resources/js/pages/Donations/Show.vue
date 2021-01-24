@@ -27,11 +27,11 @@
                             <div class="card">
                                 <div class="card-header">
                                 <h3 class="card-title">Donations Made</h3>
-                                
+
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-block btn-outline-primary" @click="addModal = true">Add Donation</button>
-                                    
+
                                 </div>
                                 </div>
                                 <!-- /.card-header -->
@@ -44,7 +44,6 @@
                                         <th>Items Type</th>
                                         <th>Item Quantity</th>
                                         <th>Donor</th>
-                                        <th>Assigned Agency</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -58,8 +57,7 @@
                                         <td>{{donation.item_type}}</td>
                                         <td>{{donation.item_quantity}} {{donation.item_unit}}</td>
                                         <td>{{donation.user.name}}</td>
-                                        <td>{{donation.agency.agency_name}}</td>
-                                        
+
                                         <td>
                                             <button type="button" class="btn btn-outline-info" @click="showAssignModal(donation, i)">Assign</button>
                                             <button type="button" class="btn btn-outline-primary" @click="showEditModal(donation, i)" >Edit</button>
@@ -111,7 +109,7 @@
                     </Modal>
 
                     <!-- Edit donation Modal -->
-                    
+
                     <!-- Assign donations to Agency-->
                     <Modal v-model="assignModal" title="Assign Donation" :mask-closable="false">
                         <Select prefix="ios-contact" filterable v-model="assignData.agency_id" clearable placeholder="Select agency">
@@ -136,7 +134,7 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-    
+
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -188,7 +186,7 @@ export default {
     },
     methods: {
         async addDonation() {
-            if(!this.data.user_id) 
+            if(!this.data.user_id)
                 return this.e('Please select donor is required');
             if (this.data.item_type.trim() == "")
                 return this.e("Please select donotaion type");
@@ -198,7 +196,7 @@ export default {
                 return this.e("Input the value should be in numbers");
             if (this.data.item_desc.trim() == "")
                 return this.e("Please add more information about the donation");
-            
+
 
             const res = await this.callApi(
                 "post",
@@ -267,7 +265,7 @@ export default {
             }
         },
         async assignDonation() {
-            if(!this.assignData.agency_id) 
+            if(!this.assignData.agency_id)
                 return this.e('Please select angency required to disburse items');
             if (this.assignData.item_name.trim() == "")
                 return this.e("Donation name cannot be empty");
@@ -326,7 +324,7 @@ export default {
             console.log("delete method called");
             /* this.deleteItem = tag;
             this.deletingIndex = i;
-            this.showDeleteModal = true; 
+            this.showDeleteModal = true;
             [vuex] unknown mutation type*/
         }
     },

@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import ViewUI from 'view-design';
+import locale from 'view-design/dist/locale/en-US';
 import 'view-design/dist/styles/iview.css';
 import common from './common';
 import router from './router';
@@ -33,7 +34,7 @@ import store from './store';
 Vue.component('app-layout', require('./layouts/AppLayout.vue').default);
 
 Vue.mixin(common);
-Vue.use(ViewUI);
+Vue.use(ViewUI, { locale });
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
