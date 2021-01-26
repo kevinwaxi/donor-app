@@ -3031,6 +3031,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3051,12 +3083,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         isDisabled: "",
         diasabilityDesc: ""
       },
+      country: false,
       addModal: false,
       editModal: false,
       isAdding: false,
       loading: true,
       families: [],
       targetsites: [],
+      countryList: [{
+        value: "Somalia",
+        label: "Somalia"
+      }, {
+        value: "Sudan",
+        label: "Sudan"
+      }, {
+        value: "South Sudan",
+        label: "South Sudan"
+      }, {
+        value: "Ethiopia",
+        label: "Ethiopia"
+      }, {
+        value: "Uganda",
+        label: "Uganda"
+      }],
       editData: {
         site_id: "",
         surname: "",
@@ -3094,18 +3143,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", _this.e("Family name is required"));
 
               case 2:
-                if (!(_this.data.children_no.trim() == "")) {
+                if (!_this.data.targetsite_id) {
                   _context.next = 4;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Provide current Camp site"));
+
+              case 4:
+                if (!_this.data.children_no) {
+                  _context.next = 6;
                   break;
                 }
 
                 return _context.abrupt("return", _this.e("Number of children is required"));
 
-              case 4:
-                _context.next = 6;
+              case 6:
+                if (!_this.data.date_of_birth) {
+                  _context.next = 8;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Number of children is required"));
+
+              case 8:
+                if (!(_this.data.history.trim() == "")) {
+                  _context.next = 10;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Provide family history"));
+
+              case 10:
+                _context.next = 12;
                 return _this.callApi("post", "/app/create_family", _this.data);
 
-              case 6:
+              case 12:
                 res = _context.sent;
 
                 if (res.status === 201) {
@@ -3126,7 +3199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-              case 8:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -4357,6 +4430,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4369,7 +4469,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         site_name: "",
         coordinates: "",
         location: "",
-        population: "",
+        population: null,
         site_image: "",
         desc: ""
       },
@@ -4410,20 +4510,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", _this.e("Site name is required"));
 
               case 2:
-                if (!(_this.data.coordinates.trim() == "")) {
+                if (!(_this.data.location.trim() == "")) {
                   _context.next = 4;
                   break;
                 }
 
-                return _context.abrupt("return", _this.e("Input coordinates is required"));
+                return _context.abrupt("return", _this.e("Please Specify the location"));
 
               case 4:
-                if (!(_this.data.location.trim() == "")) {
+                if (!(_this.data.coordinates.trim() == "")) {
                   _context.next = 6;
                   break;
                 }
 
-                return _context.abrupt("return", _this.e("Please Specify the location"));
+                return _context.abrupt("return", _this.e("Input coordinates is required"));
 
               case 6:
                 if (!(_this.data.population.trim() == "")) {
@@ -4431,7 +4531,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                return _context.abrupt("return", _this.e("Please Specify the location"));
+                return _context.abrupt("return", _this.e("Population size is required"));
 
               case 8:
                 if (!(_this.data.desc.trim() == "")) {
@@ -4455,7 +4555,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.addModal = false;
                   _this.data.site_name = "";
-                  _this.data.site_desc = "";
+                  _this.data.coordinates = "";
+                  _this.data.desc = "";
                 } else {
                   if (res.status == 422) {
                     if (res.data.errors.site_name) {
@@ -4472,6 +4573,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                     if (res.data.errors.desc) {
                       _this.e(res.data.errors.desc[0]);
+                    }
+
+                    if (res.data.errors.population) {
+                      _this.e(res.data.errors.population[0]);
                     }
                   } else {
                     _this.swr();
@@ -4603,9 +4708,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.commit("setDeletingModalObj", deleteModalObj);
       console.log("delete method called");
       /* this.deleteItem = site;
-            this.deletingIndex = i;
-            this.showDeleteModal = true;
-            [vuex] unknown mutation type*/
+      this.deletingIndex = i;
+      this.showDeleteModal = true;
+      [vuex] unknown mutation type*/
     }
   },
   created: function created() {
@@ -87491,6 +87596,11 @@ var render = function() {
               _c(
                 "Checkbox",
                 {
+                  on: {
+                    change: function($event) {
+                      _vm.country == true
+                    }
+                  },
                   model: {
                     value: _vm.data.isRefugee,
                     callback: function($$v) {
@@ -87504,22 +87614,43 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "space" }),
               _vm._v(" "),
-              _c("Input", {
-                attrs: {
-                  prefix: "ios-contact",
-                  size: "large",
-                  maxlength: "40",
-                  "show-word-limit": "",
-                  placeholder: "Country of Origin"
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.data.isRefugee,
+                      expression: "data.isRefugee"
+                    }
+                  ]
                 },
-                model: {
-                  value: _vm.data.countryOrigin,
-                  callback: function($$v) {
-                    _vm.$set(_vm.data, "countryOrigin", $$v)
-                  },
-                  expression: "data.countryOrigin"
-                }
-              }),
+                [
+                  _c(
+                    "Select",
+                    {
+                      staticStyle: { width: "200px" },
+                      model: {
+                        value: _vm.data.countryOrigin,
+                        callback: function($$v) {
+                          _vm.$set(_vm.data, "countryOrigin", $$v)
+                        },
+                        expression: "data.countryOrigin"
+                      }
+                    },
+                    _vm._l(_vm.countryList, function(item) {
+                      return _c(
+                        "Option",
+                        { key: item.value, attrs: { value: item.value } },
+                        [_vm._v(_vm._s(item.label))]
+                      )
+                    }),
+                    1
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "space" }),
               _vm._v(" "),
@@ -87528,17 +87659,80 @@ var render = function() {
                   size: "large",
                   maxlength: "200",
                   "show-word-limit": "",
+                  rows: 5,
                   type: "textarea",
                   placeholder: "Family description"
                 },
                 model: {
-                  value: _vm.data.family_desc,
+                  value: _vm.data.history,
                   callback: function($$v) {
-                    _vm.$set(_vm.data, "family_desc", $$v)
+                    _vm.$set(_vm.data, "history", $$v)
                   },
-                  expression: "data.family_desc"
+                  expression: "data.history"
                 }
               }),
+              _vm._v(" "),
+              _c("div", { staticClass: "space" }),
+              _vm._v(" "),
+              _c(
+                "Checkbox",
+                {
+                  on: {
+                    change: function($event) {
+                      _vm.disabled == true
+                    }
+                  },
+                  model: {
+                    value: _vm.data.isDisabled,
+                    callback: function($$v) {
+                      _vm.$set(_vm.data, "isDisabled", $$v)
+                    },
+                    expression: "data.isDisabled"
+                  }
+                },
+                [
+                  _vm._v(
+                    "Is " + _vm._s(_vm.data.surname) + " Physicaly challenged"
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "space" }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.data.isDisabled,
+                      expression: "data.isDisabled"
+                    }
+                  ]
+                },
+                [
+                  _c("Input", {
+                    attrs: {
+                      prefix: "ios-contact",
+                      size: "large",
+                      maxlength: "500",
+                      "show-word-limit": "",
+                      type: "textarea",
+                      rows: 4,
+                      placeholder: "Diability description"
+                    },
+                    model: {
+                      value: _vm.data.diasabilityDesc,
+                      callback: function($$v) {
+                        _vm.$set(_vm.data, "diasabilityDesc", $$v)
+                      },
+                      expression: "data.diasabilityDesc"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "space" }),
               _vm._v(" "),
@@ -88624,7 +88818,11 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n                  Add Site\n                ")]
+                      [
+                        _vm._v(
+                          "\n                                    Add Site\n                                "
+                        )
+                      ]
                     )
                   ])
                 ]),
@@ -88666,7 +88864,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                        Edit\n                      "
+                                        "\n                                                Edit\n                                            "
                                       )
                                     ]
                                   ),
@@ -88679,7 +88877,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                        Delete\n                      "
+                                        "\n                                                Delete\n                                            "
                                       )
                                     ]
                                   )
@@ -88699,7 +88897,7 @@ var render = function() {
           _c(
             "Modal",
             {
-              attrs: { title: "Add Site", "mask-closable": false },
+              attrs: { title: "Add Camp Site", "mask-closable": false },
               model: {
                 value: _vm.addModal,
                 callback: function($$v) {
@@ -88730,9 +88928,14 @@ var render = function() {
               _vm._v(" "),
               _c("Input", {
                 attrs: {
-                  prefix: "ios-contact",
-                  size: "large",
-                  placeholder: "Population Size"
+                  max: 10000,
+                  type: "number",
+                  formatter: function(value) {
+                    return ("" + value).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  },
+                  parser: function(value) {
+                    return value.replace(/\$\s?|(,*)/g, "")
+                  }
                 },
                 model: {
                   value: _vm.data.population,
@@ -88826,9 +89029,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n            " +
+                        "\n                        " +
                           _vm._s(_vm.isAdding ? "Adding.." : "Add Site") +
-                          "\n          "
+                          "\n                    "
                       )
                     ]
                   )

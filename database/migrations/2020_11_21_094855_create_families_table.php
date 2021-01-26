@@ -21,7 +21,6 @@ class CreateFamiliesTable extends Migration
             $table->date('date_of_birth');
             $table->boolean('isRefugee')->default(false);
             $table->text('countryOrigin')->nullable();
-            $table->text('location');
             $table->text('history');
             $table->boolean('isDisabled')->default(false);
             $table->text('diasabilityDesc')->nullable();

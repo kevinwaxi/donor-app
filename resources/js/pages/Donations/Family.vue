@@ -150,25 +150,57 @@
                         show-word-limit
                         placeholder="Is Refugee"
                     /> -->
-                    <Checkbox v-model="data.isRefugee">Refugee ?</Checkbox>
+                    <Checkbox
+                        v-model="data.isRefugee"
+                        v-on:change="country == true"
+                        >Refugee ?</Checkbox
+                    >
+                    <div class="space"></div>
+
+                    <div v-show="data.isRefugee">
+                        <Select
+                            v-model="data.countryOrigin"
+                            style="width:200px"
+                        >
+                            <Option
+                                v-for="item in countryList"
+                                :value="item.value"
+                                :key="item.value"
+                                >{{ item.label }}</Option
+                            >
+                        </Select>
+                    </div>
+
                     <div class="space"></div>
                     <Input
-                        v-model="data.countryOrigin"
-                        prefix="ios-contact"
-                        size="large"
-                        maxlength="40"
-                        show-word-limit
-                        placeholder="Country of Origin"
-                    />
-                    <div class="space"></div>
-                    <Input
-                        v-model="data.family_desc"
+                        v-model="data.history"
                         size="large"
                         maxlength="200"
                         show-word-limit
+                        :rows="5"
                         type="textarea"
                         placeholder="Family description"
                     />
+                    <div class="space"></div>
+                    <Checkbox
+                        v-model="data.isDisabled"
+                        v-on:change="disabled == true"
+                        >Is {{ data.surname }} Physicaly challenged</Checkbox
+                    >
+                    <div class="space"></div>
+
+                    <div v-show="data.isDisabled">
+                        <Input
+                            v-model="data.diasabilityDesc"
+                            prefix="ios-contact"
+                            size="large"
+                            maxlength="500"
+                            show-word-limit
+                            type="textarea"
+                            :rows="4"
+                            placeholder="Diability description"
+                        />
+                    </div>
                     <div class="space"></div>
                     <div slot="footer">
                         <Button type="default" @click="addModal = false"
@@ -247,12 +279,35 @@ export default {
                 isDisabled: "",
                 diasabilityDesc: ""
             },
+            country: false,
             addModal: false,
             editModal: false,
             isAdding: false,
             loading: true,
             families: [],
             targetsites: [],
+            countryList: [
+                {
+                    value: "Somalia",
+                    label: "Somalia"
+                },
+                {
+                    value: "Sudan",
+                    label: "Sudan"
+                },
+                {
+                    value: "South Sudan",
+                    label: "South Sudan"
+                },
+                {
+                    value: "Ethiopia",
+                    label: "Ethiopia"
+                },
+                {
+                    value: "Uganda",
+                    label: "Uganda"
+                },
+            ],
             editData: {
                 site_id: "",
                 surname: "",
@@ -276,8 +331,14 @@ export default {
         async addFamily() {
             if (this.data.surname.trim() == "")
                 return this.e("Family name is required");
-            if (this.data.children_no.trim() == "")
+            if (this.data.targetsite_id)
+                return this.e("Provide current Camp site");
+            if (this.data.children_no)
                 return this.e("Number of children is required");
+            if (this.data.date_of_birth)
+                return this.e("Number of children is required");
+            if (this.data.history.trim() == "")
+                return this.e("Provide family history");
             const res = await this.callApi(
                 "post",
                 "/app/create_family",

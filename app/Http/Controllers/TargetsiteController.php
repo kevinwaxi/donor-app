@@ -30,6 +30,7 @@ class TargetsiteController extends Controller
         $this->validate($request, [
             'site_name' => 'required|unique:targetsites',
             'coordinates' => 'required',
+            'population' => 'required',
             'location' => 'required',
             'desc' => 'required',
 
@@ -37,6 +38,7 @@ class TargetsiteController extends Controller
         return Targetsite::create([
             'site_name' =>$request->site_name,
             'coordinates' =>$request->coordinates,
+            'population' => $request->population,
             'location' =>$request->location,
             'site_image' =>$request->site_image,
             'desc'=>$request->desc,

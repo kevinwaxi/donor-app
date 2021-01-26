@@ -40,6 +40,7 @@ Route::prefix('app')->middleware('auth')->group(function(){
 
     //Family Crud
     Route::get('/get_family',[FamilyController::class, 'index']);
+    Route::post('/create_family', [FamilyController::class, 'create']);
 
     //Site Crud
     Route::get('/get_site',[TargetsiteController::class, 'index']);

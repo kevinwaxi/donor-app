@@ -15,7 +15,7 @@ class FamilyController extends Controller
     public function index()
     {
         //
-        return Family::with(['user', 'targetsite']);
+        return Family::with(['user', 'targetsite'])->get();
     }
 
     /**
@@ -30,11 +30,7 @@ class FamilyController extends Controller
             'surname' => 'required',
             'children_no' => 'required',
             'date_of_birth' => 'required',
-            'isRefugee' => 'required',
-            'countryOrgin' => 'required',
             'location' => 'required|unique:agencies',
-            'isDisabled' =>'required',
-            'disabilityDesc'=>'required',
         ]);
         //input family details
         return Family::create([
